@@ -124,9 +124,9 @@ fn apply_3d(
 fn compatible_with_cesium(lat: f64)->f64{
     if lat.abs() == 90.0 {
         if lat > 0.0 {
-            89.99999999999999
+            89.99
         } else {
-            -89.99999999999999
+            -89.99
         }
     } else {
         lat
