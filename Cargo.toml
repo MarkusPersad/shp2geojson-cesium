@@ -1,22 +1,22 @@
 [package]
 name = "shp2geojson-cesium"
 version = "0.1.1"
-edition = "2021"
-description = "High-performance ESRI Shapefile to GeoJSON converter."
+edition = "2024"
+description = "High-performance ESRI Shapefile to GeoJSON converter for cesium."
 license = "MIT"
-repository = "https://github.com/s19835/shp2geojson"
-homepage = "https://github.com/s19835/shp2geojson"
+repository = "https://github.com/MarkusPersad/shp2geojson-cesium"
+homepage = "https://github.com/MarkusPersad/shp2geojson-cesium"
 readme = "README.md"
-keywords = ["shapefile", "geojson", "gis", "conversion", "geospatial"]
+keywords = ["shapefile", "geojson", "gis", "conversion", "cesium"]
 categories = ["command-line-utilities", "science::geo"]
 exclude = [".github/", "CLAUDE.md", "shp2geojson-guidelines.md", "shp2geojson-mockup.html"]
 
 [[bin]]
-name = "shp2geojson"
+name = "shp2geojson-cesium"
 path = "src/main.rs"
 
 [lib]
-name = "shp2geojson"
+name = "shp2geojson-cesium"
 path = "src/lib.rs"
 
 [features]
