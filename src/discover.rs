@@ -128,7 +128,7 @@ pub fn discover(input_root: &Path) -> Result<DiscoveryReport, AppError> {
 }
 
 /// Builds a `ShapefileEntry` for a given `.shp` path by checking for sidecars.
-fn check_entry(shp: &Path) -> ShapefileEntry {
+pub fn check_entry(shp: &Path) -> ShapefileEntry {
     let dbf = shp.with_extension("dbf");
     let shx = shp.with_extension("shx");
     let prj_path = shp.with_extension("prj");
