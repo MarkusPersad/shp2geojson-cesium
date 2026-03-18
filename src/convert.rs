@@ -86,10 +86,10 @@ fn apply_2d(
         });
     }
     match transform {
-        CoordTransform::Passthrough => Ok(vec![x, y]),
+        CoordTransform::Passthrough => Ok(vec![x, compatible_with_cesium(y)]),
         #[cfg(feature = "reproject")]
         CoordTransform::Proj(r) => {
-            let (lon, lat) = r.transform(x, y, shp_path)?;
+            let (lon, lat) = r.transform(x, compatible_with_cesium(y), shp_path)?;
             Ok(vec![lon, lat])
         }
     }
@@ -113,12 +113,23 @@ fn apply_3d(
         });
     }
     match transform {
-        CoordTransform::Passthrough => Ok(vec![x, y, z]),
+        CoordTransform::Passthrough => Ok(vec![x, compatible_with_cesium(y), z]),
         #[cfg(feature = "reproject")]
         CoordTransform::Proj(r) => {
             let (lon, lat, z) = r.transform_z(x, y, z, shp_path)?;
-            Ok(vec![lon, lat, z])
+            Ok(vec![lon, compatible_with_cesium(lat), z])
         }
+    }
+}
+fn compatible_with_cesium(lat: f64)->f64{
+    if lat.abs() == 90.0 {
+        if lat > 0.0 {
+            89.99999999999999
+        } else {
+            -89.99999999999999
+        }
+    } else {
+        lat
     }
 }
 
