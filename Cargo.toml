@@ -1,5 +1,5 @@
 [package]
-name = "shp2geojson"
+name = "shp2geojson-cesium"
 version = "0.1.1"
 edition = "2021"
 description = "High-performance ESRI Shapefile to GeoJSON converter."
