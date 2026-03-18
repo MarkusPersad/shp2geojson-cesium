@@ -12,11 +12,11 @@ categories = ["command-line-utilities", "science::geo"]
 exclude = [".github/", "CLAUDE.md", "shp2geojson-guidelines.md", "shp2geojson-mockup.html"]
 
 [[bin]]
-name = "shp2geojson-cesium"
+name = "shp2geojson_cesium"
 path = "src/main.rs"
 
 [lib]
-name = "shp2geojson-cesium"
+name = "shp2geojson_cesium"
 path = "src/lib.rs"
 
 [features]

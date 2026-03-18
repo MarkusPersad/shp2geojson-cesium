@@ -9,16 +9,16 @@ use std::time::{Duration, Instant};
 use clap::Parser;
 use tracing_subscriber::{fmt, layer::SubscriberExt, util::SubscriberInitExt, EnvFilter};
 
-use shp2geojson::checkpoint::{done_set, generate_run_id, relative_shp_path, CheckpointState};
-use shp2geojson::cli::Cli;
-use shp2geojson::convert::{output_path_for, ConvertOptions};
-use shp2geojson::discover::{discover, EntryStatus};
-use shp2geojson::interactive::PauseFlag;
-use shp2geojson::output::{emit, format_bytes, OutputEvent};
-use shp2geojson::progress::Progress;
-use shp2geojson::queue::{Job, JobResult, WorkQueue};
-use shp2geojson::worker::{worker_loop, WorkerFlags};
-use shp2geojson::{config, hooks};
+use shp2geojson_cesium::checkpoint::{done_set, generate_run_id, relative_shp_path, CheckpointState};
+use shp2geojson_cesium::cli::Cli;
+use shp2geojson_cesium::convert::{output_path_for, ConvertOptions};
+use shp2geojson_cesium::discover::{discover, EntryStatus};
+use shp2geojson_cesium::interactive::PauseFlag;
+use shp2geojson_cesium::output::{emit, format_bytes, OutputEvent};
+use shp2geojson_cesium::progress::Progress;
+use shp2geojson_cesium::queue::{Job, JobResult, WorkQueue};
+use shp2geojson_cesium::worker::{worker_loop, WorkerFlags};
+use shp2geojson_cesium::{config, hooks};
 
 // ── Tracing MakeWriter that routes through MultiProgress ────────────────────
 
@@ -130,7 +130,7 @@ fn run() -> anyhow::Result<()> {
     // ── Shell completions ──────────────────────────────────────────────────────
     if let Some(shell) = cli.completions {
         let mut cmd = <Cli as clap::CommandFactory>::command();
-        clap_complete::generate(shell, &mut cmd, "shp2geojson", &mut std::io::stdout());
+        clap_complete::generate(shell, &mut cmd, "shp2geojson_cesium", &mut std::io::stdout());
         return Ok(());
     }
 
@@ -257,7 +257,7 @@ fn run() -> anyhow::Result<()> {
     }
 
     // ── Checkpoint setup ──────────────────────────────────────────────────────
-    let state_path = output_root.join(".shp2geojson_state.json");
+    let state_path = output_root.join(".shp2geojson_cesium_state.json");
 
     let mut checkpoint = if cli.resume && state_path.exists() {
         CheckpointState::load(&state_path)?
@@ -431,7 +431,7 @@ fn run() -> anyhow::Result<()> {
     // Progress is created here so `jobs_enqueued` is the accurate total.
     let worker_count = jobs.unwrap_or_else(num_cpus::get).max(1);
     let progress = Progress::new(
-        matches!(cli.output_format, shp2geojson::cli::OutputFormat::Human),
+        matches!(cli.output_format, shp2geojson_cesium::cli::OutputFormat::Human),
         jobs_enqueued,
         worker_count,
         cli.resume,
