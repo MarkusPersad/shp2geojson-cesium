@@ -89,8 +89,8 @@ fn apply_2d(
         CoordTransform::Passthrough => Ok(vec![x, compatible_with_cesium(y)]),
         #[cfg(feature = "reproject")]
         CoordTransform::Proj(r) => {
-            let (lon, lat) = r.transform(x, compatible_with_cesium(y), shp_path)?;
-            Ok(vec![lon, lat])
+            let (lon, lat) = r.transform(x, y, shp_path)?;
+            Ok(vec![lon, compatible_with_cesium(lat)])
         }
     }
 }
