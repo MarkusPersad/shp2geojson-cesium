@@ -771,9 +771,9 @@ mod tests {
 
     #[test]
     fn test_field_value_numeric_some() {
-        let fv = FieldValue::Numeric(Some(3.14));
+        let fv = FieldValue::Numeric(Some(std::f64::consts::PI));
         match field_value_to_json(&fv) {
-            Value::Number(n) => assert!((n.as_f64().unwrap() - 3.14).abs() < 1e-10),
+            Value::Number(n) => assert!((n.as_f64().unwrap() - std::f64::consts::PI).abs() < 1e-10),
             other => panic!("expected Number, got {other:?}"),
         }
     }

@@ -1,6 +1,8 @@
-# shp2geojson
+# shp2geojson-cesium
 
-High-performance ESRI Shapefile (.shp) to GeoJSON converter. Handles everything from single files to terabyte-scale batch workloads with streaming I/O, parallel workers, resumable jobs, and a live TUI.
+High-performance ESRI Shapefile (.shp) to GeoJSON converter. Handles everything from single files to terabyte-scale batch workloads with streaming I/O, parallel workers, resumable jobs, and a live TUI for Cesium.
+
+**Thanks for [shp2geojson](https://github.com/s19835/shp2geojson.git)**
 
 ## Install
 
